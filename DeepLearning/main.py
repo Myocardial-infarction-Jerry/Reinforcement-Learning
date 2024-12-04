@@ -88,7 +88,7 @@ def saveCheckpoint(model, optimizer, episode, filename):
 
 
 def loadCheckpoint(model, optimizer, filename):
-    checkpoint = torch.load(filename, map_location=device)
+    checkpoint = torch.load(filename, map_location=device, weights_only=True)
     model.load_state_dict(checkpoint['modelStateDict'])
     optimizer.load_state_dict(checkpoint['optimizerStateDict'])
     return checkpoint['episode']
@@ -233,6 +233,6 @@ def show(checkpointPath):  # Show agent using pygame
 
 
 # Uncomment one of the following to train or test
-train(epsilon)  # Train and save checkpoints
+# train(epsilon)  # Train and save checkpoints
 # test(os.path.join(checkpointDir, "dqnFinal.pth"))  # Test using the final checkpoint
 show(os.path.join(checkpointDir, "dqnFinal.pth"))  # Show agent using pygame
